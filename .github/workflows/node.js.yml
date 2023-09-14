@@ -42,7 +42,7 @@ jobs:
 
           event-type: update
 
-          repository: PenguinMod/penguinmod.github.io
+          repository: PenguinMod-Dev/penguinmod-dev.github.io
 
       - name: Repository Dispatch2
 
@@ -54,4 +54,4 @@ jobs:
 
           event-type: update
 
-          repository: PenguinMod/PenguinMod-Packager
+          repository: PenguinMod-Dev/PenguinMod-Packager
