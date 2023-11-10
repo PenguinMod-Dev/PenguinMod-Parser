@@ -57,6 +57,7 @@
                 "name": {
                     "type": "string"
                 },
+                "folder": {"$ref": "#/definitions/optionalString"},
                 "rotationCenterX": {
                     "type": "number",
                     "description": "This property is not required, but is highly recommended."
@@ -87,6 +88,7 @@
                 "name": {
                     "type": "string"
                 },
+                "folder": {"$ref": "#/definitions/optionalString"},
                 "rate": {
                     "type": "integer"
                 },
@@ -346,6 +348,7 @@
                     "type": "string",
                     "not": {"enum": ["_stage_"]}
                 },
+                "folder": {"$ref": "#/definitions/optionalString"},
                 "isStage": {
                     "type": "boolean",
                     "enum": [false]
