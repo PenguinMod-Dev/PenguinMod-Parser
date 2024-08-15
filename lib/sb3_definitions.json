@@ -32,7 +32,20 @@
         "scalarVal": {
             "oneOf": [
                 {"$ref":"#/definitions/stringOrNumber"},
-                {"type": "boolean"}
+                {"type": "boolean"},
+                {
+                    "type": "object",
+                    "properties": {
+                        "customType": {"type": "boolean"},
+                        "typeId": {"type": "string"},
+                        "serialized": true
+                    },
+                    "required": [
+                        "customType",
+                        "typeId",
+                        "serialized"
+                    ]
+                }
             ]
         },
         "assetId": {
@@ -57,7 +70,6 @@
                 "name": {
                     "type": "string"
                 },
-                "folder": {"$ref": "#/definitions/optionalString"},
                 "rotationCenterX": {
                     "type": "number",
                     "description": "This property is not required, but is highly recommended."
@@ -88,7 +100,6 @@
                 "name": {
                     "type": "string"
                 },
-                "folder": {"$ref": "#/definitions/optionalString"},
                 "rate": {
                     "type": "integer"
                 },
@@ -207,10 +218,28 @@
             "minItems": 3,
             "maxItems": 5
         },
+        "unknown_primitive": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "number",
+                    "enum": [14]
+                },
+                {"type": "string", "description": "block opcode"},
+                {"type": "string", "description": "field id"},
+                {"type": "object", "description": "field value"}
+            ],
+            "additionalItems": {
+                "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 6
+        },
         "topLevelPrimitive": {
             "oneOf": [
                 {"$ref":"#/definitions/variable_primitive"},
-                {"$ref":"#/definitions/list_primitive"}
+                {"$ref":"#/definitions/list_primitive"},
+                {"$ref":"#/definitions/unknown_primitive"}
             ]
         },
         "inputPrimitive": {
@@ -220,7 +249,8 @@
                 {"$ref":"#/definitions/text_primitive"},
                 {"$ref":"#/definitions/broadcast_primitive"},
                 {"$ref":"#/definitions/variable_primitive"},
-                {"$ref":"#/definitions/list_primitive"}
+                {"$ref":"#/definitions/list_primitive"},
+                {"$ref":"#/definitions/unknown_primitive"}
             ]
         },
         "block": {
@@ -348,7 +378,6 @@
                     "type": "string",
                     "not": {"enum": ["_stage_"]}
                 },
-                "folder": {"$ref": "#/definitions/optionalString"},
                 "isStage": {
                     "type": "boolean",
                     "enum": [false]

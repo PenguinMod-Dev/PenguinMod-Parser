@@ -1,57 +1,20 @@
-name: Node.js CI
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '12.x'
-    - run: npm install
-    - run: npm test
-name: Remote Dispatch Action Initiator
-
 #test
 
 on: [push]
 
 jobs:
-
   ping-pong:
-
     runs-on: ubuntu-latest
-
     steps:
-
       - name: Repository Dispatch
-
         uses: peter-evans/repository-dispatch@v2.0.1
-
         with:
-
           token: ${{ secrets.t }}
-
           event-type: update
-
-          repository: PenguinMod-Dev/penguinmod-dev.github.io
-
+          repository: PenguinMod/penguinmod.github.io
       - name: Repository Dispatch2
-
         uses: peter-evans/repository-dispatch@v2.0.1
-
         with:
-
           token: ${{ secrets.t }}
-
           event-type: update
-
-          repository: PenguinMod-Dev/PenguinMod-Packager
+          repository: PenguinMod/PenguinMod-Packager
